@@ -3,7 +3,7 @@
 import java.util.Scanner;
 
 public class exercise03{
-    static long inputLong(){
+    static long userInput(){
         Scanner in = new Scanner(System.in);
 
         while(true){
@@ -39,6 +39,6 @@ public class exercise03{
     }
 
     public static void main(String[] args){
-        showFibonacciNumber(inputLong());
+        showFibonacciNumber(userInput());
     }
 }

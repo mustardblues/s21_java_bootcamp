@@ -3,7 +3,7 @@
 import java.util.Scanner;
 
 public class exercise01 {
-    static double[] inputCoordinates(final int length){
+    static double[] userInput(final int length){
         double[] coordinates = new double[length];
 
         Scanner in = new Scanner(System.in);
@@ -65,6 +65,6 @@ public class exercise01 {
     }
 
     public static void main(String[] args){
-        showTrianglePerimeter(inputCoordinates(6));
+        showTrianglePerimeter(userInput(6));
     }
 }

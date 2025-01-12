@@ -3,12 +3,12 @@
 import java.util.Scanner;
 
 public class exercise04{
-    static int[] inputIntArray(){
+    static int[] userInput(){
         int[] array;
 
         Scanner in = new Scanner(System.in);
 
-        while(true){
+        for(; true;){
             if(!in.hasNextInt()){
                 in.nextLine();
 
@@ -23,11 +23,10 @@ public class exercise04{
                 System.out.println("Input error. Size <= 0.");
                 System.exit(1);
             }
-            else{
-                array = new int[size];
 
-                break;
-            }
+            array = new int[size];
+
+            break;
         }
 
         in.nextLine();
@@ -64,6 +63,6 @@ public class exercise04{
     }
 
     public static void main(String[] args){
-        showNegativeAverage(inputIntArray());
+        showNegativeAverage(userInput());
     }
 }

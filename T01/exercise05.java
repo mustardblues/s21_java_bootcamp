@@ -2,8 +2,8 @@
 
 import java.util.Scanner;
 
-class exercise05{
-    static int[] inputIntArray(){
+public class exercise05{
+    static int[] userInput(){
         int[] array;
 
         Scanner in = new Scanner(System.in);
@@ -23,61 +23,82 @@ class exercise05{
                 System.out.println("Input error. Size <= 0.");
                 System.exit(1);
             }
-            else{
-                array = new int[size];
 
-                break;
-            }
+            array = new int[size];
+
+            break;
         }
 
         in.nextLine();
 
-        for(int i = 0; i < array.length; ++i){
+        int i = 0;
+
+        while(i < array.length){
             if(!in.hasNextInt()){
                 in.nextLine();
 
                 System.out.println("Couldn't parse a number. Please, try again.");
 
-                i = -1;
+                i = 0;
 
                 continue;
             }
 
-            array[i] = in.nextInt();
+            array[i++] = in.nextInt();
         }
 
         return array;
     }
 
-    static void showNumbersWithSameFirstAndLast(final int[] array){
-        int[] numbers = new int[array.length];
+    static int[] findSingleDigits(final int[] array){
+        int i = 0, j = 0;
 
-        int count = 0;
+        while(i < array.length){
+            int last = array[i] % 10;
+            int first = array[i];
 
-        for(int num : array){
-            int last_digit = num % 10;
-            int first_digit = num;
+            while(first > 9) first /= 10;
 
-            while(first_digit > 9) first_digit /= 10;
+            if(first == last) j++;
 
-            if(first_digit == last_digit){
-                numbers[count++] = num;
-            }
+            ++i;
         }
 
-        if(count > 0){
-            for(int i = 0; i < count; ++i){
-                System.out.print(numbers[i] + " ");
-            }
+        int[] result = new int[j];
+
+        i = j = 0;
+
+        while(i < array.length){
+            int last = array[i] % 10;
+            int first = array[i];
+
+            while(first > 9) first /= 10;
+
+            if(first == last) result[j++] = array[i];
+
+            ++i;
         }
-        else{
-            System.out.print("There are no such elements.");
+
+        return result;
+    }
+
+    static void showElements(final int[] array){
+        if(array.length == 0){
+            System.out.println("There are no such elements.");
+
+            return;
+        }
+
+        int i = 0;
+
+        while(i < array.length){
+            System.out.print(array[i++] + " ");
         }
 
         System.out.println();
     }
 
     public static void main(String[] args){
-        showNumbersWithSameFirstAndLast(inputIntArray());
+       showElements(findSingleDigits(userInput()));
     }
 }

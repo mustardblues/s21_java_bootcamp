@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class exercise02{
 
-    static long inputLong(){
+    static long userInput(){
         Scanner in = new Scanner(System.in);
 
         while(true){
@@ -43,7 +43,7 @@ public class exercise02{
     }
 
     public static void main(String[] args){
-        showTime(calculateTime(inputLong()));
+        showTime(calculateTime(userInput()));
 
     }
 }
