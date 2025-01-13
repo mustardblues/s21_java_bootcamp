@@ -3,12 +3,16 @@
 import java.util.Scanner;
 
 public class exercise01 {
-    static double[] userInput(final int length){
-        double[] coordinates = new double[length];
+    public static void main(String[] args){
+        showTrianglePerimeter(userInput());
+    }
+
+    static double[] userInput(){
+        double[] coordinates = new double[6];
 
         Scanner in = new Scanner(System.in);
 
-        for(int i = 0; i < length; ++i){
+        for(int i = 0; i < coordinates.length; ++i){
             if(!in.hasNextDouble()){
                 System.out.println("Couldn't parse a number. Please, try again.");
 
@@ -62,9 +66,5 @@ public class exercise01 {
 
         return !((y1 * x2 == y2 * x1) ||
                 ((y1 == 0 && x1 == 0) || (y2 == 0 && x2 == 0) || (y3 == 0 && x3 == 0)));
-    }
-
-    public static void main(String[] args){
-        showTrianglePerimeter(userInput(6));
     }
 }

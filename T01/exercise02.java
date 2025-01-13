@@ -3,6 +3,9 @@
 import java.util.Scanner;
 
 public class exercise02{
+    public static void main(String[] args){
+        showTime(calculateTime(userInput()));
+    }
 
     static long userInput(){
         Scanner in = new Scanner(System.in);
@@ -11,7 +14,7 @@ public class exercise02{
             if(!in.hasNextLong()){
                 in.nextLine();
 
-                System.out.println("Couldn't parse a number. Please, try again");
+                System.out.println("Couldn't parse a number. Please, try again.");
 
                 continue;
             }
@@ -40,10 +43,5 @@ public class exercise02{
         String format = String.format("%02d:%02d:%02d", time[0], time[1], time[2]);
 
         System.out.println(format);
-    }
-
-    public static void main(String[] args){
-        showTime(calculateTime(userInput()));
-
     }
 }

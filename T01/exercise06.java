@@ -20,7 +20,7 @@ public class exercise06{
             if(!in.hasNextInt()){
                 in.nextLine();
 
-                System.out.println("Couldn't parse a number. Please, try again");
+                System.out.println("Couldn't parse a number. Please, try again.");
 
                 continue;
             }
@@ -28,7 +28,7 @@ public class exercise06{
             int size = in.nextInt();
 
             if(size <= 0){
-                System.out.println("Input error. Size <= 0");
+                System.out.println("Input error. Size <= 0.");
 
                 System.exit(1);
             }
@@ -46,7 +46,7 @@ public class exercise06{
             if(!in.hasNextDouble()){
                 in.nextLine();
 
-                System.out.println("Couldn't parse a number. Please, try again");
+                System.out.println("Couldn't parse a number. Please, try again.");
 
                 i = 0;
 

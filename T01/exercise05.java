@@ -3,6 +3,10 @@
 import java.util.Scanner;
 
 public class exercise05{
+    public static void main(String[] args){
+       showElements(findSingleDigits(userInput()));
+    }
+
     static int[] userInput(){
         int[] array;
 
@@ -11,7 +15,7 @@ public class exercise05{
         while(true){
             if(!in.hasNextInt()){
                 in.nextLine();
-                
+
                 System.out.println("Couldn't parse a number. Please, try again.");
 
                 continue;
@@ -96,9 +100,5 @@ public class exercise05{
         }
 
         System.out.println();
-    }
-
-    public static void main(String[] args){
-       showElements(findSingleDigits(userInput()));
     }
 }

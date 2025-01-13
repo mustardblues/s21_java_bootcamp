@@ -3,6 +3,10 @@
 import java.util.Scanner;
 
 public class exercise04{
+    public static void main(String[] args){
+        showNegativeAverage(userInput());
+    }
+
     static int[] userInput(){
         int[] array;
 
@@ -60,9 +64,5 @@ public class exercise04{
         }
 
         System.out.println(sum_neg_numbers / count_neg_numbers);
-    }
-
-    public static void main(String[] args){
-        showNegativeAverage(userInput());
     }
 }
