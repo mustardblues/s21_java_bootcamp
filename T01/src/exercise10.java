@@ -35,8 +35,6 @@ public class exercise10{
 
             in.nextLine();
 
-            int age = 0;
-
             if(in.hasNextInt()){
                 final int age = in.nextInt();
 
