@@ -35,11 +35,20 @@ public class exercise10{
 
             in.nextLine();
 
+            int age = 0;
+
             if(in.hasNextInt()){
-                list.add(new User(name, in.nextInt()));
+                final int age = in.nextInt();
+
+                if(age <= 0){
+                    System.out.println("Incorrect input. Age <= 0.");
+                }
+                else{
+                    list.add(new User(name, age));
+                }
             }
             else{
-                System.out.println("Incorrect input. Age <= 0.");
+                System.out.println("Couldn't parse a number. Please, try again.");
             }
 
             in.nextLine();

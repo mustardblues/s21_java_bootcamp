@@ -25,6 +25,7 @@ public class exercise04{
 
             if(size <= 0){
                 System.out.println("Input error. Size <= 0.");
+
                 System.exit(1);
             }
 
@@ -63,6 +64,8 @@ public class exercise04{
             }
         }
 
-        System.out.println(sum_neg_numbers / count_neg_numbers);
+        if(count_neg_numbers != 0){
+            System.out.println(sum_neg_numbers / count_neg_numbers);
+        }
     }
 }
