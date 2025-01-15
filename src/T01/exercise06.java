@@ -1,5 +1,7 @@
 // Copyright 2025 stranger
 
+package T01;
+
 import java.util.Scanner;
 
 public class exercise06{
