@@ -9,11 +9,29 @@ public class exercise05{
         try{
             final int[] array = userInput();
 
+            int count = 0;
+
             for(int value : array){
                 if(isIdenticalFirstAndLastDigits(value)){
-
+                    ++count;
                 }
             }
+
+            int[] identical_digits = new int[count];
+
+            count = 0;
+
+            for(int value : array){
+                if(isIdenticalFirstAndLastDigits(value)){
+                    identical_digits[count++] = value;
+                }
+            }
+
+            for(int value : identical_digits){
+                System.out.print(value + " ");
+            }
+
+            System.out.println();
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());

@@ -3,108 +3,86 @@
 package T01;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class exercise07{
     static class Pair{
         public double first;
         public double second;
-
-        Pair(final double first, final double second){
-            this.first = first;
-            this.second = second;
-        }
     }
 
     public static void main(String[] args) {
         try{
-           double[] array = getArrayFromFile(userInput());
+            double[] array = readArrayFromFile(inputFileName());
 
-            showArrayDouble(array);
-
-            writeMaxAndMinElements(findMaxAndMinElements(array));
+            writeMaxAndMinValues(getMaxAndMinValues(array));
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());
-
             System.exit(1);
         }
     }
 
-    static String userInput(){
+    static String inputFileName(){
         Scanner in = new Scanner(System.in);
 
         return in.next();
     }
 
-    static double[] getArrayFromFile(final String filename) throws Exception{
+    static double[] readArrayFromFile(final String filename) throws Exception{
         File file = new File(filename);
 
-        if(!file.exists()) throw new Exception("Input error. File isn't exist.");
+        if(!file.exists()){
+            throw new Exception("Input error. File isn't exist.");
+        }
 
-        Scanner reader  = new Scanner(file);
+        Scanner reader = new Scanner(file);
 
-        int array_length = 0;
+        int length = 0;
 
         while(reader.hasNext()){
             if(reader.hasNextInt()){
-                array_length = reader.nextInt();
+                length = reader.nextInt();
                 break;
             }
 
             reader.next();
         }
 
-        if(array_length <= 0) throw new Exception("Input error. Size <= 0.");
-
-        double[] array = new double[array_length];
-
-        int counter = 0;
-
-        while(reader.hasNext()){
-            if(reader.hasNextDouble()){
-                array[counter++] = reader.nextDouble();
-                continue;
-            }
-
-            reader.next();
+        if(length <= 0){
+            throw new Exception("Input error. Size <= 0.");
         }
 
-        if(counter != array_length) throw new Exception("Input error. Insufficient number of elements.");
+        int index = 0;
+
+        double[] array = new double[length];
+
+        while(index < array.length){
+            if(!reader.hasNext()) break;
+
+            if(!reader.hasNextDouble()) reader.next();
+
+            array[index++] = reader.nextDouble();
+        }
+
+        if(index != array.length){
+            throw new Exception("Input error. Insufficient number of elements.");
+        }
 
         return array;
     }
 
-    static void showArrayDouble(final double[] array){
-        if(array == null) return;
+    static Pair getMaxAndMinValues(final double[] array){
+        Pair pair = new Pair();
 
-        System.out.println(array.length);
+        pair.first = Arrays.stream(array).min().getAsDouble();
+        pair.second = Arrays.stream(array).max().getAsDouble();
 
-        for(double element : array){
-            System.out.print(element + " ");
-        }
-
-        System.out.println();
+        return pair;
     }
 
-    static Pair findMaxAndMinElements(final double[] array){
-        double max = 0, min = array[0];
-
-        for(int i = 1; i < array.length; ++i){
-            if(max < array[i]){
-                max = array[i];
-            }
-            else if(min > array[i]){
-                min = array[i];
-            }
-        }
-
-        return new Pair(min, max);
-    }
-
-    static void writeMaxAndMinElements(final Pair pair) throws Exception{
-        if(pair == null) return;
-
+    static void writeMaxAndMinValues(final Pair pair) throws Exception{
         System.out.println("Saving min and max values in file.");
 
         try(PrintWriter writer = new PrintWriter("result.txt")) {
