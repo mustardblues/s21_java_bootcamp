@@ -6,67 +6,76 @@ import java.util.Scanner;
 
 public class exercise06{
     public static void main(String[] args){
-        double[] array = userInput();
+        try{
+            double[] array = userInput();
 
-        sortSelection(array);
+            sortSelection(array);
 
-        showElements(array);
+            for(double value : array){
+                System.out.print(value + " ");
+            }
+
+            System.out.println();
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            System.exit(1);
+        }
     }
 
-    static double[] userInput(){
-        double[] array;
-
+    static double[] userInput() throws Exception{
         Scanner in = new Scanner(System.in);
 
-        while(true){
-            if(!in.hasNextInt()){
-                in.nextLine();
+        final int length = inputInt(in);
 
-                System.out.println("Couldn't parse a number. Please, try again.");
-
-                continue;
-            }
-
-            int size = in.nextInt();
-
-            if(size <= 0){
-                System.out.println("Input error. Size <= 0.");
-
-                System.exit(1);
-            }
-
-            array = new double[size];
-
-            break;
+        if(length <= 0){
+            throw new Exception("Input error. Size <= 0.");
         }
 
-        in.nextLine();
+        return inputDoubleArray(in, length);
+    }
 
-        int i = 0;
-
-        while(i < array.length){
-            if(!in.hasNextDouble()){
-                in.nextLine();
-
+    static int inputInt(Scanner in){
+        while(true){
+            if(!in.hasNextInt()){
                 System.out.println("Couldn't parse a number. Please, try again.");
-
-                i = 0;
+                in.nextLine();
 
                 continue;
             }
 
-            array[i++] = in.nextDouble();
+            final int value = in.nextInt();
+            in.nextLine();
+
+            return value;
+        }
+    }
+
+    static double[] inputDoubleArray(Scanner in, final int length){
+        double[] array = new double[length];
+
+        int index = 0;
+
+        while(index < length){
+            if(!in.hasNextDouble()){
+                System.out.println("Couldn't parse a number. Please, try again.");
+                in.nextLine();
+
+                continue;
+            }
+
+            array[index++] = in.nextDouble();
         }
 
         return array;
     }
 
     static void sortSelection(double[] array){
-        for(int i = 0; i < array.length - 1; ++i){
+        for(int i = 0; i < array.length; ++i){
             int min_index = i;
 
             for(int j = i + 1; j < array.length; ++j){
-                if(array[min_index] > array[i]) min_index = j;
+                if(array[min_index] > array[j]) min_index = j;
             }
 
             if(min_index != i){
@@ -75,13 +84,5 @@ public class exercise06{
                 array[i] = temp;
             }
         }
-    }
-
-    static void showElements(final double[] array){
-        for(double element : array){
-            System.out.print(element + " ");
-        }
-
-        System.out.println();
     }
 }

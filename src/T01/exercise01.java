@@ -6,7 +6,13 @@ import java.util.Scanner;
 
 public class exercise01 {
     public static void main(String[] args){
-        showTrianglePerimeter(userInput());
+        try{
+            trianglePerimeter(userInput());
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            System.exit(1);
+        }
     }
 
     static double[] userInput(){
@@ -14,28 +20,23 @@ public class exercise01 {
 
         Scanner in = new Scanner(System.in);
 
-        for(int i = 0; i < coordinates.length; ++i){
+        for(int i = 0; i < coordinates.length; ){
             if(!in.hasNextDouble()){
                 System.out.println("Couldn't parse a number. Please, try again.");
-
-                in.next();
-
-                i = -1;
+                in.nextLine();
 
                 continue;
             }
 
-            coordinates[i] = in.nextDouble();
+            coordinates[i++] = in.nextDouble();
         }
 
         return coordinates;
     }
 
-    static void showTrianglePerimeter(final double[] coordinates){
+    static void trianglePerimeter(final double[] coordinates) throws Exception{
         if(!isTriangle(coordinates)){
-            System.out.println("It isn't triangle.");
-
-            return;
+            throw new Exception("It isn't triangle.");
         }
 
         final double side_1 =

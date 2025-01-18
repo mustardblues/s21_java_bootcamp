@@ -6,39 +6,50 @@ import java.util.*;
 
 public class exercise09{
     public static void main(String[] args){
-        findPattern(userInput());
+        List<String> list = userInput();
+
+        if(list != null){
+            System.out.println(findPattern(list));
+        }
     }
 
     static List<String> userInput(){
         Scanner in = new Scanner(System.in);
 
-        int list_size;
+        final int length = inputInt(in);
 
+        if(length <= 0) return null;
+
+        return inputStringList(in, length + 1);
+    }
+
+    static int inputInt(Scanner in){
         while(true){
             if(!in.hasNextInt()){
+                System.out.println("Couldn't parse a number. Please, try again.");
                 in.nextLine();
 
                 continue;
             }
 
-            list_size = in.nextInt();
+            final int value = in.nextInt();
             in.nextLine();
 
-            break;
+            return value;
         }
+    }
 
+    static List<String> inputStringList(Scanner in, final int length){
         List<String> list = new ArrayList<>();
 
-        if(list_size > 0){
-            while(list_size-- >= 0) list.add(in.nextLine());
+        for(int i = 0; i < length; ++i){
+            list.add(in.nextLine());
         }
 
         return list;
     }
 
-    static void findPattern(final List<String> list){
-        if(list.isEmpty()) return;
-
+    static String findPattern(final List<String> list){
         StringBuilder output = new StringBuilder();
 
         final int index_of_last_element = list.size() - 1;
@@ -53,6 +64,6 @@ public class exercise09{
             }
         }
 
-        System.out.println(output.delete(0, 2));
+        return output.delete(0, 2).toString();
     }
 }

@@ -6,7 +6,16 @@ import java.util.Scanner;
 
 public class exercise02{
     public static void main(String[] args){
-        showTime(calculateTime(userInput()));
+        try{
+            long[] clock = calculateTime(userInput());
+
+            String format = String.format("%02d:%02d:%02d", clock[0], clock[1], clock[2]);
+            System.out.println(format);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            System.exit(1);
+        }
     }
 
     static long userInput(){
@@ -14,9 +23,8 @@ public class exercise02{
 
         while(true){
             if(!in.hasNextLong()){
-                in.nextLine();
-
                 System.out.println("Couldn't parse a number. Please, try again.");
+                in.nextLine();
 
                 continue;
             }
@@ -25,11 +33,9 @@ public class exercise02{
         }
     }
 
-    static long[] calculateTime(final long seconds){
+    static long[] calculateTime(final long seconds) throws Exception{
         if(seconds < 0){
-            System.out.println("Incorrect time.");
-
-            System.exit(1);
+            throw new Exception("Incorrect time.");
         }
 
         long[] time = new long[3];
@@ -39,11 +45,5 @@ public class exercise02{
         time[2] = seconds - time[0] * 3600 - time[1] * 60;
 
         return time;
-    }
-
-    static void showTime(final long[] time){
-        String format = String.format("%02d:%02d:%02d", time[0], time[1], time[2]);
-
-        System.out.println(format);
     }
 }

@@ -6,41 +6,37 @@ import java.util.Scanner;
 
 public class exercise03{
     public static void main(String[] args){
-        showFibonacciNumber(userInput());
+        try{
+            final int value = userInput();
+
+            if(value > 40) throw new Exception("Too large " + value + ".");
+
+            System.out.println(fibonacci(value));
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            System.exit(1);
+        }
     }
 
-    static long userInput(){
+    static int userInput(){
         Scanner in = new Scanner(System.in);
 
         while(true){
-            if(!in.hasNextLong()){
-                in.nextLine();
-
+            if(!in.hasNextInt()){
                 System.out.println("Couldn't parse a number. Please, try again.");
+                in.nextLine();
 
                 continue;
             }
 
-            return in.nextLong();
+            return in.nextInt();
         }
     }
 
-    static void showFibonacciNumber(final long number){
-        if(number > 40){
-            System.out.println("Too large " + number + ".");
-            System.exit(1);
-        }
-        else if(number < 0){
-            System.out.println("Too small " + number + ".");
-            System.exit(1);
-        }
+    static int fibonacci(final int value){
+        if(value <= 1) return value;
 
-        System.out.println(calculateFibonacci(number));
-    }
-
-    static long calculateFibonacci(final long number){
-        if(number <= 1) return number;
-
-        return calculateFibonacci(number - 1) + calculateFibonacci(number - 2);
+        return fibonacci(value - 1) + fibonacci(value - 2);
     }
 }

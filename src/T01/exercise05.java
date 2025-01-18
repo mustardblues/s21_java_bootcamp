@@ -2,105 +2,79 @@
 
 package T01;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class exercise05{
     public static void main(String[] args){
-       showElements(findSingleDigits(userInput()));
+        try{
+            final int[] array = userInput();
+
+            for(int value : array){
+                if(isIdenticalFirstAndLastDigits(value)){
+
+                }
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            System.exit(1);
+        }
     }
 
-    static int[] userInput(){
-        int[] array;
-
+    static int[] userInput() throws Exception{
         Scanner in = new Scanner(System.in);
 
-        while(true){
-            if(!in.hasNextInt()){
-                in.nextLine();
+        final int length = inputInt(in);
 
-                System.out.println("Couldn't parse a number. Please, try again.");
-
-                continue;
-            }
-
-            final int size = in.nextInt();
-
-            if(size <= 0){
-                System.out.println("Input error. Size <= 0.");
-                System.exit(1);
-            }
-
-            array = new int[size];
-
-            break;
+        if(length <= 0){
+            throw new Exception("Input error. Size <= 0.");
         }
 
-        in.nextLine();
+        return inputIntArray(in, length);
+    }
 
-        int i = 0;
-
-        while(i < array.length){
+    static int inputInt(Scanner in){
+        while(true){
             if(!in.hasNextInt()){
-                in.nextLine();
-
                 System.out.println("Couldn't parse a number. Please, try again.");
-
-                i = 0;
+                in.nextLine();
 
                 continue;
             }
 
-            array[i++] = in.nextInt();
+            final int value = in.nextInt();
+            in.nextLine();
+
+            return value;
+        }
+    }
+
+    static int[] inputIntArray(Scanner in, final int length){
+        int[] array = new int[length];
+
+        int index = 0;
+
+        while(index < length){
+            if(!in.hasNextInt()){
+                System.out.println("Couldn't parse a number. Please, try again.");
+                in.nextLine();
+
+                continue;
+            }
+
+            array[index++] = in.nextInt();
         }
 
         return array;
     }
 
-    static int[] findSingleDigits(final int[] array){
-        int i = 0, j = 0;
+    static boolean isIdenticalFirstAndLastDigits(final int value){
+        int last = value % 10;
 
-        while(i < array.length){
-            int last = array[i] % 10;
-            int first = array[i];
+        int first = value;
 
-            while(first > 9) first /= 10;
+        while(first > 9) first /= 10;
 
-            if(first == last) j++;
-
-            ++i;
-        }
-
-        int[] result = new int[j];
-
-        i = j = 0;
-
-        while(i < array.length){
-            int last = array[i] % 10;
-            int first = array[i];
-
-            while(first > 9) first /= 10;
-
-            if(first == last) result[j++] = array[i];
-
-            ++i;
-        }
-
-        return result;
-    }
-
-    static void showElements(final int[] array){
-        if(array.length == 0){
-            System.out.println("There are no such elements.");
-
-            return;
-        }
-
-        int i = 0;
-
-        while(i < array.length){
-            System.out.print(array[i++] + " ");
-        }
-
-        System.out.println();
+        return first == last;
     }
 }

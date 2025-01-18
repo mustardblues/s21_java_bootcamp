@@ -6,49 +6,36 @@ import java.util.Scanner;
 
 public class exercise08{
     public static void main(String[] args){
-        detectAscendingOrder(userInput());
+        inputAscendingOrder();
     }
 
-    static String userInput(){
+    static void inputAscendingOrder(){
         Scanner in = new Scanner(System.in);
 
-        StringBuilder line = new StringBuilder();
-
-        while(in.hasNextInt()) line.append(in.next()).append(" ");
-
-        return line.toString();
-    }
-
-    static void detectAscendingOrder(final String line){
-        if(line.isEmpty()){
+        if(!in.hasNextInt()){
             System.out.println("Input error.");
-
             return;
         }
 
-        Scanner reader = new Scanner(line);
+        int previous = in.nextInt();
 
-        int current = 0, previous = reader.nextInt();
-        boolean is_ascending_order = true;
+        while(true){
+            if(!in.hasNextInt()){
+                System.out.println("The sequence is ordered in ascending order.");
 
-        while(reader.hasNextInt()){
-            current = reader.nextInt();
+                break;
+            }
 
-            if(current < previous){
-                is_ascending_order = false;
+            final int current = in.nextInt();
+
+            if(previous > current){
+                System.out.println("The sequence is not ordered " +
+                        "from the ordinal number of the number " + current + ".");
 
                 break;
             }
 
             previous = current;
-        }
-
-        if(is_ascending_order){
-            System.out.println("The sequence is ordered in ascending order.");
-        }
-        else{
-            System.out.println("The sequence is not ordered " +
-                    "from the ordinal number of the number " + current + ".");
         }
     }
 }
