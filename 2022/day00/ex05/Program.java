@@ -52,7 +52,7 @@ public class Program{
     }
 
     static int[] getTimetable(Scanner in){
-        int[] timetable = new int[]{0, 0, 0, 0, 0, 0, 0};
+        int[] timetable = new int[7];
 
         while(true){
             final String line = in.nextLine();
