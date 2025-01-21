@@ -15,7 +15,9 @@ public class Program{
             if(in.hasNextInt()){
                 request = in.nextInt();
 
-                if(request == 42) break;
+                if(request == 42){
+                    break;
+                }
 
                 if(primeNumber(sumOfDigits(request))){
                     System.out.println(request);
@@ -45,7 +47,9 @@ public class Program{
         final int length = (int)Math.round(Math.sqrt(value));
 
         for(int i = 2; i <= length; ++i){
-            if((value % i) == 0) return false;
+            if((value % i) == 0) {
+                return false;
+            }
         }
 
         return true;
