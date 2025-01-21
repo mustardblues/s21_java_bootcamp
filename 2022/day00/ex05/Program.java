@@ -10,15 +10,7 @@ public class Program{
             "MO", "TU", "WE", "TH", "FR", "SA", "SU"
     };
 
-    static final String[] monthDays = new String[]{
-            "TU", "WE", "TH", "FR", "SA", "SU", "MO",
-            "TU", "WE", "TH", "FR", "SA", "SU", "MO",
-            "TU", "WE", "TH", "FR", "SA", "SU", "MO",
-            "TU", "WE", "TH", "FR", "SA", "SU", "MO",
-            "TU", "WE"
-    };
-
-    static final int[] dayNumber = new int[]{
+    static final int[] monthNumbers = new int[]{
             1, 2, 3, 4, 5, 6, 0,
             1, 2, 3, 4, 5, 6, 0,
             1, 2, 3, 4, 5, 6, 0,
@@ -125,14 +117,16 @@ public class Program{
         System.out.printf("%" + maxIndent + "s", "");
 
         for(int i = 0; i < 30; ++i){
-            final int time = timetable[dayNumber[i]];
+            final int time = timetable[monthNumbers[i]];
 
             if(time != 0){
                 if(i < 10){
-                    System.out.printf("%d:00 %s  %d|", time, monthDays[i], i + 1);
+                    System.out.printf("%d:00 %s  %d|",
+                            time, weekDays[monthNumbers[i]], i + 1);
                 }
                 else{
-                    System.out.printf("%d:00 %s %d|", time, monthDays[i], i + 1);
+                    System.out.printf("%d:00 %s %d|",
+                            time, weekDays[monthNumbers[i]], i + 1);
                 }
             }
         }
@@ -141,7 +135,7 @@ public class Program{
             System.out.print("\n" + students[i]);
 
             for(int j = 0; j < 30; ++j){
-                final int time = timetable[dayNumber[j]];
+                final int time = timetable[monthNumbers[j]];
 
                 if(time != 0){
                     if(attendance[i][j][time] == 1){
