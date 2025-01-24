@@ -67,8 +67,8 @@ public class TransactionsLinkedList implements TransactionsList{
                     tail.prev = null;
                 }
                 else{
-                    temp.next.prev = temp.prev;
                     temp.prev.next = temp.next;
+                    temp.next.prev = temp.prev;
                 }
 
                 --size;
@@ -87,12 +87,12 @@ public class TransactionsLinkedList implements TransactionsList{
     public Transaction[] toArray(){
         Transaction[] array = new Transaction[size];
 
-        Node temp = tail;
+        Node temp = head;
 
-        for(int i = size - 1; i >= 0; --i){
+        for(int i = 0; i < size; ++i){
             array[i] = temp.transaction;
 
-            temp = temp.next;
+            temp = temp.prev;
         }
 
         return array;

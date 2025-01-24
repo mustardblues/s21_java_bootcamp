@@ -45,7 +45,7 @@ public class TransactionsService{
         final UUID id = UUID.randomUUID();
 
         sender.transactions().add(new Transaction(id, sender, recipient, -amount));
-        recipient.transactions().add(new Transaction(id, recipient, sender, amount));
+        recipient.transactions().add(new Transaction(id, sender, recipient, amount));
     }
 
     public Transaction[] userTransactions(final int id)
@@ -81,7 +81,7 @@ public class TransactionsService{
             int counter = 0;
 
             for(int j = i + 1; j < array.length; ++j){
-                if(array[j].getId().equals(temp)){
+                if(array[j] != null && array[j].getId().equals(temp)){
                     array[j] = null;
 
                     ++counter;

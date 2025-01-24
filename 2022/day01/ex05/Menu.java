@@ -178,7 +178,7 @@ public class Menu{
 
         final String[] data = in.nextLine().split(" ");
 
-        if(data.length != 2){
+        if(data.length == 2){
             try{
                 final int user_id = Integer.parseInt(data[0]);
                 final UUID transaction_id = UUID.fromString(data[1]);
@@ -192,15 +192,15 @@ public class Menu{
 
                     if(t.getCategory() == Transaction.Category.Credit){
                         System.out.println("Transfer To " +
-                                t.getRecipient() + "(id = " +
+                                t.getRecipient().getName() + "(id = " +
                                 t.getRecipient().getId() + ") " +
-                                t.getAmount() + "removed");
+                                t.getAmount() + " removed");
                     }
                     else{
                         System.out.println("Transfer From " +
-                                t.getSender() + "(id = " +
+                                t.getSender().getName() + "(id = " +
                                 t.getSender().getId() + ") " +
-                                t.getAmount() + "removed");
+                                t.getAmount() + " removed");
                     }
 
                     break;
@@ -223,7 +223,7 @@ public class Menu{
                     System.out.println(t.getSender().getName() +
                             "(id = " + t.getSender().getId() + ") " +
                             "has an unacknowledged transfer id " +
-                            t.getId() + "to " +
+                            t.getId() + " to " +
                             t.getRecipient().getName() + "(id = " +
                             t.getRecipient().getId() + ") " +
                             "for " + t.getAmount());
@@ -232,7 +232,7 @@ public class Menu{
                     System.out.println(t.getRecipient().getName() +
                             "(id = " + t.getRecipient().getId() + ") " +
                             "has an unacknowledged transfer id " +
-                            t.getId() + "from " +
+                            t.getId() + " from " +
                             t.getSender().getName() + "(id = " +
                             t.getSender().getId() + ") " +
                             "for " + t.getAmount());
