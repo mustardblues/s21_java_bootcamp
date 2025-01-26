@@ -8,7 +8,7 @@ public class Program{
     public static void main(String[] args){
         final Scanner in = new Scanner(System.in);
 
-        final Map<String, String> hexMap = FileSignature.mapSignatures(
+        final Map<String, String> hexMap = FileSignatures.mapSignatures(
                 "2022/day02/ex00/signatures.txt");
 
         while(true){
@@ -19,9 +19,9 @@ public class Program{
                 break;
             }
 
-            final String hexCode = FileSignature.fileSignature(filename);
+            final String hexCode = FileSignatures.fileSignature(filename);
 
-            FileSignature.writeFileFormat(hexMap, hexCode);
+            FileSignatures.writeFileFormat(hexMap, hexCode);
         }
     }
 }

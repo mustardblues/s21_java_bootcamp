@@ -5,7 +5,7 @@ package day02.ex00;
 import java.io.*;
 import java.util.*;
 
-public class FileSignature{
+public class FileSignatures{
     public static Map<String, String> mapSignatures(final String filename){
         final File file = new File(filename);
 
