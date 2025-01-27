@@ -2,10 +2,14 @@
 
 package day02.ex02;
 
+import java.nio.file.Path;
+
 public class Program{
     public static void main(String[] args){
-        FileManager manager = new FileManager("/home/mustardblues/s21_java_bootcamp/2022");
+        if(args.length != 0 && args[0].contains("--current-folder=")){
+            FileManager manager = new FileManager(args[0].substring(17));
 
-        manager.start();
+            manager.start();
+        }
     }
 }

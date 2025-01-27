@@ -4,6 +4,7 @@ package day02.ex02;
 
 import java.io.*;
 import java.nio.file.*;
+import static java.nio.file.StandardCopyOption.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -28,11 +29,18 @@ public class FileManager{
     public FileManager(final String path){
         Path folderPath = Path.of(path);
 
+        if(!Files.exists(folderPath)){
+            System.err.println("This directory does not exist");
+            System.exit(-1);
+        }
+
         if(!folderPath.isAbsolute()){
+            System.err.println("It is not absolute path");
             System.exit(-1);
         }
 
         if(!Files.isDirectory(folderPath)){
+            System.err.println("It is not directory path");
             System.exit(-1);
         }
 
@@ -109,17 +117,15 @@ public class FileManager{
             return;
         }
 
-        final Path content1 = Path.of(userInput[1]);
-        final Path content2 = Path.of(userInput[2]);
+        final Path source = currentFolderPath.resolve(userInput[1]);
+        final Path destination = currentFolderPath.resolve(userInput[2]);
 
         try{
-            if(Files.isDirectory(content2)){
-                Files.move(content1,
-                        content2.resolve(content1.getFileName()),
-                        StandardCopyOption.REPLACE_EXISTING);
+            if(Files.isDirectory(destination)){
+                Files.move(source, destination.resolve(source.getFileName()), REPLACE_EXISTING);
             }
-            else if(!Files.isDirectory(Path.of(userInput[1]))){
-                Files.move(content1, content2.resolveSibling(Paths.get(userInput[1])));
+            else if(!Files.isDirectory(source)){
+                Files.move(source, destination.resolveSibling(Paths.get(userInput[2])));
             }
         }
         catch(IOException ex){
