@@ -18,22 +18,22 @@ public class Program{
             System.exit(-1);
         }
 
-        int threadCount = 0;
+        int threadsCount = 0;
 
         try{
-            threadCount = Integer.parseInt(args[0].substring(15));
+            threadsCount = Integer.parseInt(args[0].substring(15));
         }
         catch(NumberFormatException ex){
             System.err.println(ex.getMessage());
             System.exit(-1);
         }
 
-        if((threadCount < 1) || (threadCount > 10)){
+        if((threadsCount < 1) || (threadsCount > 10)){
             System.err.println("threadCount is too small or too large");
             System.exit(-1);
         }
 
-        return threadCount;
+        return threadsCount;
     }
 
     public static void main(String[] args){

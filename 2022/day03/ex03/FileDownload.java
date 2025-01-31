@@ -8,8 +8,16 @@ import java.nio.file.*;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public record FileDownload(String link) implements Runnable{
+    private static int downloadCount = 0;
+
     @Override
     public void run(){
+        final int fileNumber = ++downloadCount;
+
+        System.out.println(Thread.currentThread().getName() +
+                " start download file number " +
+                fileNumber);
+
         URL url;
 
         try{
@@ -26,5 +34,9 @@ public record FileDownload(String link) implements Runnable{
         catch(IOException ex){
             System.err.println(ex.getMessage());
         }
+
+        System.out.println(Thread.currentThread().getName() +
+                " finish download file number " +
+                fileNumber);
     }
 }
