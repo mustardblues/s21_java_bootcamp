@@ -4,7 +4,6 @@ package edu.school21.printer.logic;
 
 import java.awt.*;
 import java.io.*;
-import java.nio.file.Path;
 
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
@@ -17,9 +16,9 @@ public class BMPConverter{
     final static int colorWhite = Color.WHITE.getRGB();
     final static int colorBlack = Color.BLACK.getRGB();
 
-    public static void toCharArray(final Path path, final Args parameters){
+    public static void toCharArray(final String path, final Args parameters){
         try{
-            final BufferedImage image = ImageIO.read(new File(path.toString()));
+            final BufferedImage image = ImageIO.read(new File(path));
 
             final String white = parameters.white();
             final String black = parameters.black();

@@ -2,8 +2,6 @@
 
 package edu.school21.printer.app;
 
-import java.nio.file.Path;
-
 import com.beust.jcommander.JCommander;
 
 import edu.school21.printer.logic.Args;
@@ -19,7 +17,7 @@ public class Program{
                 .build()
                 .parse(args);
 
-            BMPConverter.toCharArray(Path.of("/resources/baks.bmp"), parameters);
+            BMPConverter.toCharArray("src/resources/baks.bmp", parameters);
         }
         catch(Exception ex){
             System.err.println(ex.getMessage());
